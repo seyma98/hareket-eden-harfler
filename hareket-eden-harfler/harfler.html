@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<head>
+    <title>HOMEWORK</title>
+</head>
+
+<body>
+    
+    <canvas id = "glcanvas"  width = "700"  height = "700"></canvas>
+    
+    <button id = "DirectionButton"> 
+		Change Rotation Direction
+     </button>
+
+
+    <button id = "startButton"> 
+		start Rotation
+     </button>
+
+    <button id = "stopButton"> 
+		stop Rotation
+     </button>
+
+<button id = "Lscale"> 
+		scale larger
+     </button>
+
+<button id = "Sscale"> 
+		scale smaller
+     </button>
+
+
+
+     <div>
+        rotating_speed 100 <input id="slide" type="range"
+        min="0" max="1000" step="100" value="500" />
+        0 
+     </div>
+        
+    
+<select id="color" size="6">
+<option value="0">
+	change color to red	
+</option>
+<option value="1">change color to green</option>
+<option value="2">change color to blue</option>
+<option value="3">change color to yellow</option>
+<option value="5">change color to purple</option>
+<option value="6">change color to white</option>
+
+</select>
+
+   
+
+
+
+
+</body>
+
+<!-- Vertex Shader -->
+<script id = "vertex-shader" type = "x-shader/x-vertex">
+    uniform vec4 translation;
+    uniform mat4 scale;
+    attribute vec4 vPosition;
+    
+    uniform float theta;
+    void main(){
+
+  
+        gl_Position.x =(vPosition.x * cos(theta) - vPosition.y * sin(theta)+translation.x)*scale[0][0];
+
+        gl_Position.y = (vPosition.x * sin(theta) + vPosition.y * cos(theta)+translation.y)*scale[1][1];
+       
+ 
+        gl_Position.z = 0.0 ;
+
+        gl_Position.w = 1.0 ;
+
+
+     
+    }
+</script>
+
+<!-- Fragment Shader -->
+<script id = "fragment-shader" type = "x-shader/x-fragment">
+    precision mediump float;
+                          
+
+uniform vec4 fColor;     
+
+    void main() {
+        gl_FragColor = fColor;
+    }
+
+</script>
+
+<!-- Initialize Shaders Script -->
+<script src = "./common/initShaders.js"></script>
+
+
+
+<!-- <script src = "./common/MV.js"></script> -->
+<script src = "MV.js"></script>
+<script src = "initShaders.js"></script>
+<!-- letter Script -->
+<script src = "17290079.js"></script>
+
+<script src = "webgl-utils.js"></script>
+
+</html>
